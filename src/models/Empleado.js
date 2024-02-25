@@ -4,20 +4,20 @@ const empleadoSchema = new Schema({
     Nombre: String,
     AppE: String,
     ApmE: String,
-    FechaNac: Date,  // Cambiado a Date
+    FechaNac: Date,  
     Correo: String,
     Region: String,
     AreaTrabajo: String,
     Contrato: String,
     TurnoActual: {
-        HoraInicial: Date,  // Cambiado a Date
-        HoraFinal: Date     // Cambiado a Date
+        HoraInicial: Date,  
+        HoraFinal: Date     
     },
     HorarioTraining: {
-        FechaInicio: Date,   // Cambiado a Date
-        FechaFin: Date,      // Cambiado a Date
-        HoraInicial: Date,   // Cambiado a Date
-        HoraFinal: Date      // Cambiado a Date
+        FechaInicio: Date,   
+        FechaFin: Date,     
+        HoraInicial: Date,   
+        HoraFinal: Date      
     }
 });
 
