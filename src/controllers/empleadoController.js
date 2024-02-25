@@ -14,6 +14,15 @@ const empleadoController = {
       }
    },
 
+   getAll: async (req, res) => {
+      try {
+        const empleados = await Empleado.find();
+        res.status(200).json(empleados);
+      } catch (error) {
+        res.status(500).json({ error: 'Error al obtener todos los empleados', detalle: error.message });
+      }
+    },
+
    getById: async (req, res) => {
       try {
          const empleado = await Empleado.findById(req.params.id);

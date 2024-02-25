@@ -5,6 +5,7 @@ const router = express.Router();
 const empleadoController = require('../controllers/empleadoController');
 
 router.post('/', empleadoController.create);
+router.get('/', empleadoController.getAll);
 router.get('/:id', empleadoController.getById);
 router.put('/:id', empleadoController.update);
 router.delete('/:id', empleadoController.delete);
