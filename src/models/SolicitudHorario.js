@@ -4,12 +4,11 @@ const solicitudhorarioSchema = new Schema({
     NombreEmpleado: String,
     NombreAdmin: String,
     Contrato: String,
-    Turno: [],
+    Turno: String,
+    FechaInicio: Date,
+    FechaFin: Date, 
     EstadoSolicitud: String,
-    Correo: String,
-    Razon: String
+    Correo: String
 });
 
 const SolicitudHorario = model('SolicitudHorario', solicitudhorarioSchema);
-
-module.exports = SolicitudHorario;

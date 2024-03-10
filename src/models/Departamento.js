@@ -8,10 +8,9 @@ const departamentoSchema = new Schema({
                 {Colonia:String},
                 {Cp:String},
                 {Ciudad:String}
-              ],
-    NumeroDeEmpleado:Number
+              ]
 });
 
 const Departamento = model('Departamento', departamentoSchema);
 
-module.exports = Departamento;
+module.exports = Departamento;

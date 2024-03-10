@@ -2,8 +2,8 @@ const { Schema, model } = require('mongoose');
 
 const historialhorarioSchema = new Schema({
     NombreEmpleado: String,
-    NombreAdmin: String,
-    Turnos: []
+    FechaInicio: Date,
+    FechaFin: Date
 });
 
 const HistorialHorario = model('HistorialHorario', historialhorarioSchema);
