@@ -23,22 +23,26 @@ const empleadoController = {
       }
     },
 
-   getById: async (req, res) => {
+    getById: async (req, res) => {
       try {
-         const empleado = await Empleado.findById(req.params.id);
-         if (empleado) {
-            res.status(200).json(empleado);
-         } else {
-            res.status(404).json({ error: 'Empleado no encontrado' });
-         }
+        const empleado = await Empleado.findOne({ Correo: req.params.correo });
+        if (empleado) {
+          res.status(200).json(empleado);
+        } else {
+          res.status(404).json({ error: 'Empleado no encontrado' });
+        }
       } catch (error) {
-         res.status(500).json({ error: 'Error al obtener el empleado', detalle: error.message });
+        res.status(500).json({ error: 'Error al obtener el empleado', detalle: error.message });
       }
-   },
+    },
+    
+    
+    
+    
 
    update: async (req, res) => {
       try {
-         const empleadoActualizado = await Empleado.findByIdAndUpdate(req.params.id, req.body, { new: true });
+         const empleadoActualizado = await Empleado.findByIdAndUpdate(req.params.correo, req.body, { new: true });
          if (empleadoActualizado) {
             res.status(200).json(empleadoActualizado);
          } else {
@@ -50,20 +54,21 @@ const empleadoController = {
    },
 
    delete: async (req, res) => {
-    try {
-       const empleadoEliminado = await Empleado.findByIdAndDelete(req.params.id);
-       if (empleadoEliminado) {
-          res.status(200).json({
-             message: 'Empleado eliminado exitosamente',
-             empleadoId: empleadoEliminado._id
-          });
-       } else {
-          res.status(404).json({ error: 'Empleado no encontrado' });
-       }
-    } catch (error) {
+      try {
+         const empleadoEliminado = await Empleado.findOneAndDelete({ Correo: req.params.correo });
+         if (empleadoEliminado) {
+            res.status(200).json({
+               message: 'Empleado eliminado exitosamente',
+               empleadoId: empleadoEliminado._id
+            });
+         } else {
+            res.status(404).json({ error: 'Empleado no encontrado' });
+         }
+      } catch (error) {
          res.status(500).json({ error: 'Error al eliminar el empleado', detalle: error.message });
       }
    }
+   
 };
 
 module.exports = empleadoController;

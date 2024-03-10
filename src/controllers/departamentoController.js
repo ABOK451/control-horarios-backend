@@ -25,7 +25,7 @@ const departamentoController = {
 
   getById: async (req, res) => {
     try {
-      const departamento = await Departamento.findById(req.params.id);
+      const departamento = await Departamento.findById({ NombreDepartamento: req.params.nombre });
       if (departamento) {
         res.status(200).json(departamento);
       } else {
@@ -38,7 +38,7 @@ const departamentoController = {
 
   update: async (req, res) => {
     try {
-      const departamentoActualizado = await Departamento.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const departamentoActualizado = await Departamento.findByIdAndUpdate({ NombreDepartamento: req.params.nombre }, req.body, { new: true });
       if (departamentoActualizado) {
         res.status(200).json(departamentoActualizado);
       } else {
@@ -51,7 +51,7 @@ const departamentoController = {
 
   delete: async (req, res) => {
     try {
-      const departamentoEliminado = await Departamento.findByIdAndDelete(req.params.id);
+      const departamentoEliminado = await Departamento.findByIdAndDelete({ NombreDepartamento: req.params.nombre });
       if (departamentoEliminado) {
         res.status(200).json({
           message: 'Departamento eliminado exitosamente',

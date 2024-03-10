@@ -6,8 +6,8 @@ const turnoController = require('../controllers/turnoController');
 
 router.post('/', turnoController.create);
 router.get('/', turnoController.getAll);
-router.get('/:id', turnoController.getById);
-router.put('/:id', turnoController.update);
-router.delete('/:id', turnoController.delete);
+router.get('/:nombreTurno', turnoController.getByNombre);
+router.put('/:nombreTurno', turnoController.update);
+router.delete('/:nombreTurno', turnoController.delete);
 
 module.exports = router;

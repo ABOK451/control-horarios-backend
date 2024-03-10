@@ -25,7 +25,7 @@ const historialHorarioController = {
 
   getById: async (req, res) => {
     try {
-      const historialHorario = await HistorialHorario.findById(req.params.id);
+      const historialHorario = await HistorialHorario.findById({ NombreEmpleado: req.params.nombre });
       if (historialHorario) {
         res.status(200).json(historialHorario);
       } else {
@@ -38,7 +38,7 @@ const historialHorarioController = {
 
   update: async (req, res) => {
     try {
-      const historialHorarioActualizado = await HistorialHorario.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const historialHorarioActualizado = await HistorialHorario.findByIdAndUpdate({ NombreEmpleado: req.params.nombre }, req.body, { new: true });
       if (historialHorarioActualizado) {
         res.status(200).json(historialHorarioActualizado);
       } else {
@@ -51,7 +51,7 @@ const historialHorarioController = {
 
   delete: async (req, res) => {
     try {
-      const historialHorarioEliminado = await HistorialHorario.findByIdAndDelete(req.params.id);
+      const historialHorarioEliminado = await HistorialHorario.findByIdAndDelete({ NombreEmpleado: req.params.nombre });
       if (historialHorarioEliminado) {
         res.status(200).json({
           message: 'Historial de horario eliminado exitosamente',

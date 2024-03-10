@@ -23,13 +23,13 @@ const turnoController = {
     }
   },
 
-  getById: async (req, res) => {
+  getByNombre: async (req, res) => {
     try {
-      const turno = await Turno.findById(req.params.id);
+      const turno = await Turno.findOne({ nombreTurno: req.params.nombreTurno });
       if (turno) {
         res.status(200).json(turno);
       } else {
-        res.status  (404).json({ error: 'Turno no encontrado' });
+        res.status(404).json({ error: 'Turno no encontrado' });
       }
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener el turno', detalle: error.message });
@@ -38,7 +38,12 @@ const turnoController = {
 
   update: async (req, res) => {
     try {
-      const turnoActualizado = await Turno.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const turnoActualizado = await Turno.findOneAndUpdate(
+        { nombreTurno: req.params.nombreTurno },  
+        req.body,
+        { new: true }
+      );
+
       if (turnoActualizado) {
         res.status(200).json(turnoActualizado);
       } else {
@@ -51,7 +56,7 @@ const turnoController = {
 
   delete: async (req, res) => {
     try {
-      const turnoEliminado = await Turno.findByIdAndDelete(req.params.id);
+      const turnoEliminado = await Turno.findByIdAndDelete({ nombreTurno: req.params.nombreTurno });
       if (turnoEliminado) {
         res.status(200).json({
           message: 'Turno eliminado exitosamente',

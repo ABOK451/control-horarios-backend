@@ -25,7 +25,7 @@ const solicitudHorarioController = {
 
   getById: async (req, res) => {
     try {
-      const solicitudHorario = await SolicitudHorario.findById(req.params.id);
+      const solicitudHorario = await SolicitudHorario.findOne({ Correo: req.params.correo });
       if (solicitudHorario) {
         res.status(200).json(solicitudHorario);
       } else {
@@ -35,10 +35,11 @@ const solicitudHorarioController = {
       res.status(500).json({ error: 'Error al obtener la solicitud de horario', detalle: error.message });
     }
   },
+  
 
   update: async (req, res) => {
     try {
-      const solicitudHorarioActualizada = await SolicitudHorario.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const solicitudHorarioActualizada = await SolicitudHorario.findOneAndUpdate({ Correo: req.params.correo }, req.body, { new: true });
       if (solicitudHorarioActualizada) {
         res.status(200).json(solicitudHorarioActualizada);
       } else {
@@ -48,10 +49,11 @@ const solicitudHorarioController = {
       res.status(500).json({ error: 'Error al actualizar la solicitud de horario', detalle: error.message });
     }
   },
+  
 
   delete: async (req, res) => {
     try {
-      const solicitudHorarioEliminada = await SolicitudHorario.findByIdAndDelete(req.params.id);
+      const solicitudHorarioEliminada = await SolicitudHorario.findOneAndDelete({ Correo: req.params.correo });
       if (solicitudHorarioEliminada) {
         res.status(200).json({
           message: 'Solicitud de horario eliminada exitosamente',
@@ -63,7 +65,8 @@ const solicitudHorarioController = {
     } catch (error) {
       res.status(500).json({ error: 'Error al eliminar la solicitud de horario', detalle: error.message });
     }
-  }
+  },
+  
 };
 
 module.exports = solicitudHorarioController;

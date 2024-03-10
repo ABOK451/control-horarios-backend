@@ -25,7 +25,7 @@ const solicitudVacacionesController = {
 
   getById: async (req, res) => {
     try {
-      const solicitudVacaciones = await SolicitudVacaciones.findById(req.params.id);
+      const solicitudVacaciones = await SolicitudVacaciones.findById({ NombreEmpleado: req.params.nombre });
       if (solicitudVacaciones) {
         res.status(200).json(solicitudVacaciones);
       } else {
@@ -38,7 +38,7 @@ const solicitudVacacionesController = {
 
   update: async (req, res) => {
     try {
-      const solicitudVacacionesActualizada = await SolicitudVacaciones.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const solicitudVacacionesActualizada = await SolicitudVacaciones.findByIdAndUpdate({ NombreEmpleado: req.params.nombre }, req.body, { new: true });
       if (solicitudVacacionesActualizada) {
         res.status(200).json(solicitudVacacionesActualizada);
       } else {
@@ -51,7 +51,7 @@ const solicitudVacacionesController = {
 
   delete: async (req, res) => {
     try {
-      const solicitudVacacionesEliminada = await SolicitudVacaciones.findByIdAndDelete(req.params.id);
+      const solicitudVacacionesEliminada = await SolicitudVacaciones.findByIdAndDelete({ NombreEmpleado: req.params.nombre });
       if (solicitudVacacionesEliminada) {
         res.status(200).json({
           message: 'Solicitud de vacaciones eliminada exitosamente',

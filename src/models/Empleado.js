@@ -8,19 +8,21 @@ const empleadoSchema = new Schema({
     Correo: String,
     Region: String,
     AreaTrabajo: String,
+    Departamento: String,
     Contrato: String,
     TurnoActual: {
         HoraInicial: Date,  
         HoraFinal: Date     
     },
     HorarioTraining: {
-        FechaInicio: Date,   
-        FechaFin: Date,     
+        Fecha: Date,     
         HoraInicial: Date,   
         HoraFinal: Date      
-    }
+    },
+    NombreAdmin:String,
+    FechaDeIngreso: Date
 });
 
 const Empleado = model('Empleado', empleadoSchema);
 
-module.exports = Empleado;
+module.exports = Empleado;

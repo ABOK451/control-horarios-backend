@@ -25,7 +25,7 @@ const administradorController = {
 
   getById: async (req, res) => {
     try {
-      const administrador = await Administrador.findById(req.params.id);
+      const administrador = await Administrador.findOne({ NombreAdmin: req.params.nombreAdmin });
       if (administrador) {
         res.status(200).json(administrador);
       } else {
@@ -38,7 +38,7 @@ const administradorController = {
 
   update: async (req, res) => {
     try {
-      const administradorActualizado = await Administrador.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const administradorActualizado = await Administrador.findOneAndUpdate({ NombreAdmin: req.params.nombreAdmin }, req.body, { new: true });
       if (administradorActualizado) {
         res.status(200).json(administradorActualizado);
       } else {
@@ -51,7 +51,7 @@ const administradorController = {
 
   delete: async (req, res) => {
     try {
-      const administradorEliminado = await Administrador.findByIdAndDelete(req.params.id);
+      const administradorEliminado = await Administrador.findOneAndDelete({ NombreAdmin: req.params.nombreAdmin });
       if (administradorEliminado) {
         res.status(200).json({
           message: 'Administrador eliminado exitosamente',
@@ -64,6 +64,7 @@ const administradorController = {
       res.status(500).json({ error: 'Error al eliminar el administrador', detalle: error.message });
     }
   }
+  
 };
 
 module.exports = administradorController;

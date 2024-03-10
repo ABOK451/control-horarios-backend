@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const turnoSchema = new Schema({
+    nombreTurno: String,
     horaFinal: Date,
     horaInicio: Date,
     NumeroDeEmpleados: Number

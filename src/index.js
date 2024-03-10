@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');  
+const cors = require('cors');
 
 mongoose.connect('mongodb://root:root@localhost:27017/ControlHorarios', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -11,6 +12,12 @@ db.on('error', (error) => {
 
 db.once('open', () => {
     console.log('Conexión exitosa a MongoDB');
+
+    app.use(cors({
+        origin: 'http://localhost:4200', // Update with your Angular app's URL
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+      }));
 
     app.use('/api', require('./routes/index'));
 
